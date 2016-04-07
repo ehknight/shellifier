@@ -16,7 +16,6 @@ def upload():
         advanced=True
     else:
         advanced=False
-    print advanced
     return render_template('index.html', shellified=shelly(preshellified, !advanced))
 
 if __name__=='__main__':
