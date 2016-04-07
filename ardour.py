@@ -5,7 +5,6 @@ import nltk.data
 from random import randrange
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag, word_tokenize
-from tqdm import tqdm
 from random import randrange
 
 loseTense=False #true if lose verbs
