@@ -1,5 +1,15 @@
 <html>
-	<main>
+	<head>
+	<link href="stupid.css" rel="stylesheet"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+       </head>
+       <main>
+       <div class = "padded max900">
 	<h3> Shellify your stuff online! </h3>
 	<form action="upload" method = "post" enctype="multipart/form-data">
 	<textarea rows="5" cols="80" id = "to" name ="to">Stuff to shellify</textarea>
@@ -8,6 +18,7 @@
 	<input type = "checkbox" value = "Yes" id="adv" name = "adv">
 	Advanced Shellification
 	</form>
-	<p>{{shellified|safe}}</p>
+	<p>{{shellified}}</p>
+       </div>
 	</main>
 </html>
