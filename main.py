@@ -10,6 +10,10 @@ shellified=""""""
 def index():
     return render_template('index.html', shellified = shellified)
 
+@app.route('/stupid.css')
+def stupid():
+    return render_template('stupid.css')
+
 @app.route('/upload', methods=['POST'])
 def upload():
     preshellified = request.form['to']

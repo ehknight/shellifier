@@ -15,6 +15,11 @@ def fixStuff(txt):
     txt = txt.replace(" '","'")
     txt = txt.replace(" ;",";")
     txt = txt.replace(" :",":")
+    txt = txt.replace(" i ","I")
+    txt = txt.replace("gon na","gonna")
+    txt = txt.replace("got ta","gotta")
+    txt = txt.replce(" n't","n't")
+    txt = txt.replace("wan na ","wanna ")
     return txt
 
 def penn2WN(tag):
