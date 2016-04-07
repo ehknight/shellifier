@@ -87,7 +87,7 @@ def shelly(sentence):
 
     shellified=[]
     for i in range(len(newSentence)):
-        if randrange(0,5)==0:
+        if randrange(0,2)==1:
             if len(newSentence[i])>=len(newSentence2[i]):
                 shellified.append(newSentence[i])
             else:
