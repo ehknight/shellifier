@@ -64,7 +64,7 @@ def shelly(sentence):
         try:
             i.name()
             try:
-                hypo = i.hyponyms()[randrange(0,len(i.hyponyms()//3+1)]
+                hypo = i.hyponyms()[randrange(0,len(i.hyponyms()//3+1))]
                 lem = hypo.lemmas()[randrange(0,len(i.lemmas())//3+1)].synset()
                 if len(str(hypo.name()))<len(str(lem.name())):
                     newSentence.append(lem.name()[:-5])
