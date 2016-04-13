@@ -14,6 +14,7 @@ nltk.data.path.append('./nltk_data/')
 def preProcess(txt):
     txt = txt.replace("\n",".\n")
     txt = txt.replace("..",".")
+    txt = txt.replace("Im ","I'm ")
     return txt
 
 def fixStuff(txt):
@@ -137,7 +138,7 @@ def main(txt, adv, linebreaks):
     lines=[]
     for x in enumerate(tmp):
         i=x[1]
-        if i[-1:]=="\n":
+        if i[-1:]=="\n" and x[0]!=len(tmp)-1:
             lines.append(i[:-2])
         else:
             lines.append(i[:-1])
