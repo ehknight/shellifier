@@ -6,22 +6,16 @@ from random import randrange
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag, word_tokenize
 from random import randrange
-import unicodedata
 
 loseTense=False #true if lose verbs
 nltk.data.path.append('./nltk_data/')
-
-def preProcess(txt):
-    txt = txt.replace("\n",".\n")
-    txt = txt.replace("..",".")
-    return txt
 
 def fixStuff(txt):
     txt = txt.replace(' ,',',')
     txt = txt.replace(" '","'")
     txt = txt.replace(" ;",";")
     txt = txt.replace(" :",":")
-    txt = txt.replace(" i "," I ")
+    txt = txt.replace(" i ","I")
     txt = txt.replace("gon na","gonna")
     txt = txt.replace("got ta","gotta")
     txt = txt.replace(" n't","n't")
@@ -122,10 +116,7 @@ def shelly(sentence):
         shellified.append(co)
     return " ".join(shellified)
 
-def main(txt, adv, linebreaks):
-    txt=unicodedata.normalize('NFKD', txt).encode('ascii','ignore').splitlines()
-    txt = [i.decode("utf8") for i in txt]
-    txt = preProcess("\n".join(txt))
+def main(txt, adv):
     # see https://stackoverflow.com/questions/5534926/
     # to-find-synonyms-defintions-and-example-sentences-using-wordnet
     global loseTense
@@ -135,21 +126,14 @@ def main(txt, adv, linebreaks):
     tmp = tokenizer.tokenize(data)
     #print tmp
     lines=[]
-    for x in enumerate(tmp):
-        i=x[1]
+    for i in tmp:
         if i[-1:]=="\n":
             lines.append(i[:-2])
         else:
             lines.append(i[:-1])
     shellified=[]
     for i in lines:
-        try:
-            shellified.append(
-                fixStuff(tokenizer.tokenize(shelly(i).replace('_',' '))[0].capitalize())+'.'
-            )
-        except IndexError:
-            shellified.append("")
-    if linebreaks==True:
-        return "<br>".join(shellified)
-    else:
-        return " ".join(shellified)
+        shellified.append(
+            fixStuff(tokenizer.tokenize(shelly(i).replace('_',' '))[0].capitalize())+'.'
+        )
+    return '\n\n'.join(shellified)

@@ -11,14 +11,20 @@
        <main>
        <div class = "padded max900">
 	<h3> Shellify your stuff online! </h3>
+	<h7> Now with 100% more ardour </h7>
+	<p>
+
+	</p>
 	<form action="upload" method = "post" enctype="multipart/form-data">
-	<textarea rows="5" cols="80" id = "to" name ="to">Stuff to shellify</textarea>
+	<textarea rows="5" cols="80" id = "to" name ="to" placeholder="Stuff to shellify"></textarea>
 	<br>
-	<input type = "submit" value = "Submit">
-	<input type = "checkbox" value = "Yes" id="adv" name = "adv">
-	Advanced Shellification
+	<input type = "submit" value = "Initiate shellification"> &nbsp;
+	<label><input type = "checkbox" value = "Yes" id="adv" name = "adv">
+	Advanced Shellification</label> &nbsp; &nbsp;
+	<label><input type = "checkbox" value = "Blah" id="linebreaks" name = "linebreaks">
+	Linebreaks</label>
 	</form>
-	<p>{{shellified}}</p>
+	<p>{{shellified | safe}}</p>
        </div>
 	</main>
 </html>
