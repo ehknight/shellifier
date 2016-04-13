@@ -126,7 +126,7 @@ def shelly(sentence):
 def main(txt, adv, linebreaks):
     txt=unicodedata.normalize('NFKD', txt).encode('ascii','ignore').splitlines()
     txt = [i.decode("utf8") for i in txt]
-    txt = preProcess("\n".join(txt))
+    txt = preProcess("\n".join(txt))+" " #extra space bc cuts off last char
     # see https://stackoverflow.com/questions/5534926/
     # to-find-synonyms-defintions-and-example-sentences-using-wordnet
     global loseTense
