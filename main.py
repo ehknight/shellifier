@@ -6,6 +6,11 @@ app = Flask(__name__)
 
 shellified=""""""
 
+def preProcess(txt):
+    txt = txt.replace("\n",".\n")
+    txt = txt.replace("..",".")
+    return txt
+
 @app.route('/')
 def index():
     return render_template('index.html', shellified = shellified)
@@ -21,9 +26,9 @@ def upload():
         advanced=True
     else:
         advanced=False
-    return render_template('index.html', shellified=shelly(preshellified, not advanced))
+    return render_template('index.html', shellified=shelly(
+                           preProcess(preshellified), not advanced))
 
 if __name__=='__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port = port)
-

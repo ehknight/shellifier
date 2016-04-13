@@ -15,7 +15,7 @@ def fixStuff(txt):
     txt = txt.replace(" '","'")
     txt = txt.replace(" ;",";")
     txt = txt.replace(" :",":")
-    txt = txt.replace(" i ","I")
+    txt = txt.replace(" i "," I ")
     txt = txt.replace("gon na","gonna")
     txt = txt.replace("got ta","gotta")
     txt = txt.replace(" n't","n't")
@@ -136,4 +136,4 @@ def main(txt, adv):
         shellified.append(
             fixStuff(tokenizer.tokenize(shelly(i).replace('_',' '))[0].capitalize())+'.'
         )
-    return '\n\n'.join(shellified)
+    return " <br> ".join(shellified)
