@@ -56,7 +56,9 @@ def inferSynsets(sentence):
                 synsets.append(str(token[0]))
     return synsets
 
+
 def shelly(sentence):
+    origSentence = sentence[:]
     syn = inferSynsets(sentence)
     newSentence=[]
     newSentence2=[]
@@ -64,7 +66,7 @@ def shelly(sentence):
         try:
             i.name()
             try:
-                hypo = i.hyponyms()[randrange(0,len(i.hyponyms()//3+1))]
+                hypo = i.hyponyms()[randrange(0,len(i.hyponyms())//3+1)]
                 lem = hypo.lemmas()[randrange(0,len(i.lemmas())//3+1)].synset()
                 if len(str(hypo.name()))<len(str(lem.name())):
                     newSentence.append(lem.name()[:-5])
@@ -86,14 +88,32 @@ def shelly(sentence):
             newSentence2.append(i)
 
     shellified=[]
+    sentenceComp1=[]
+    sentenceComp2=[]
     for i in range(len(newSentence)):
-        if randrange(0,2)==1:
-            if len(newSentence[i])>=len(newSentence2[i]):
-                shellified.append(newSentence[i])
-            else:
-                shellified.append(newSentence2[i])
+        if len(newSentence[i])>len(newSentence2[i]):
+            sentenceComp1.append(newSentence[i])
+            sentenceComp2.append(newSentence2[i])
         else:
-            shellified.append([newSentence[i],newSentence2[i]][randrange(0,2)])
+            sentenceComp2.append(newSentence[i])
+            sentenceComp1.append(newSentence2[i])
+    for i in range(len(newSentence)):
+        c1 = sentenceComp1[i]
+        c2 = sentenceComp2[i]
+        co = origSentence[i]
+        if c1 == co:
+            shellified.append(c2)
+            continue
+        if c2 == co:
+            shellified.append(c1)
+            continue
+        if len(c1)>len(c2):
+            shellified.append(c1)
+            continue
+        if len(c2)>=len(c1):
+            shellified.append(c2)
+            continue
+        shellified.append(co)
     return " ".join(shellified)
 
 def main(txt, adv):
