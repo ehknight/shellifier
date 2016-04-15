@@ -1,11 +1,19 @@
 import os
 from flask import Flask, render_template, request
 from ardour import main as shelly
+from itertools import groupby
 
 DEBUG = True
 app = Flask(__name__)
 
 shellified=""""""
+
+def removeRepeated(txt, remrep):
+    #https://stackoverflow.com/questions/17238587/python-regular-expression-to-remove-repeated-words
+    if remrep==True:
+        return " ".join([k for k,v in groupby(txt.split())])
+    else:
+        return txt
 
 @app.route('/')
 def index():
@@ -28,8 +36,12 @@ def upload():
         linebreaks=True
     else:
         linebreaks=False
-    return render_template('index.html', shellified=shelly(
-                           preshellified, not advanced, linebreaks, reps))
+    if 'remrep' in request.form:
+        remrep=True
+    else:
+        remrep=False
+    return render_template('index.html', shellified=removeRepeated(shelly(
+                           preshellified, not advanced, linebreaks, reps), remrep))
 
 if __name__=='__main__':
     port = int(os.environ.get('PORT', 5000))
