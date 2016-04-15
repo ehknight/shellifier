@@ -22,9 +22,18 @@
 	<label><input type = "checkbox" value = "Yes" id="adv" name = "adv">
 	Advanced Shellification</label> &nbsp; &nbsp;
 	<label><input type = "checkbox" value = "Blah" id="linebreaks" name = "linebreaks">
-	Linebreaks</label>
+	Linebreaks</label> &nbsp; &nbsp;
+	<div style = "neutralize">
+		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		&nbsp; &nbsp; &nbsp; &nbsp; Insanity Multiplier &nbsp;
+		<select name="multiplier">
+			{% for mult in range(25) %}
+				<option value={{ mult+1 }}>{{ mult+1 }}</option>
+			{% endfor %}
+		</select>
+	</div>
 	</form>
 	<p>{{shellified | safe}}</p>
-       </div>
+  </div>
 	</main>
 </html>

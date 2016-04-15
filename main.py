@@ -18,6 +18,8 @@ def stupid():
 @app.route('/upload', methods=['POST'])
 def upload():
     preshellified = request.form['to']
+    reps = int(request.form['multiplier'])
+    print(reps)
     if 'adv' in request.form:
         advanced=True
     else:
@@ -27,7 +29,7 @@ def upload():
     else:
         linebreaks=False
     return render_template('index.html', shellified=shelly(
-                           preshellified, not advanced, linebreaks))
+                           preshellified, not advanced, linebreaks, reps))
 
 if __name__=='__main__':
     port = int(os.environ.get('PORT', 5000))

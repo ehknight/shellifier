@@ -123,13 +123,14 @@ def shelly(sentence):
         shellified.append(co)
     return " ".join(shellified)
 
-def main(txt, adv, linebreaks):
+def main(txt, adv, linebreaks, reps):
     txt=unicodedata.normalize('NFKD', txt).encode('ascii','ignore').splitlines()
     txt = [i.decode("utf8") for i in txt]
     txt = preProcess("\n".join(txt))+" " #extra space bc cuts off last char
     # see https://stackoverflow.com/questions/5534926/
     # to-find-synonyms-defintions-and-example-sentences-using-wordnet
     global loseTense
+    print(txt, adv, linebreaks, reps)
     loseTense = adv
     tokenizer = nltk.data.load("tokenizers/punkt/english.pickle")
     data = txt
@@ -143,6 +144,11 @@ def main(txt, adv, linebreaks):
         else:
             lines.append(i[:-1])
     shellified=[]
+    if reps <= 0:
+        if linebreaks==True:
+            return "<br>".join(lines)
+        else:
+            return " ".join(lines)
     for i in lines:
         try:
             shellified.append(
@@ -150,7 +156,4 @@ def main(txt, adv, linebreaks):
             )
         except IndexError:
             shellified.append("")
-    if linebreaks==True:
-        return "<br>".join(shellified)
-    else:
-        return " ".join(shellified)
+    return main(" ".join(shellified), adv, linebreaks, reps-1)
