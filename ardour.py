@@ -146,9 +146,9 @@ def main(txt, adv, linebreaks, reps):
     shellified=[]
     if reps <= 0:
         if linebreaks==True:
-            return "<br>".join(lines)
+            return "<br>".join(lines)[:-3]+"."
         else:
-            return " ".join(lines)
+            return " ".join(lines)[:-3]+"."
     for i in lines:
         try:
             shellified.append(
